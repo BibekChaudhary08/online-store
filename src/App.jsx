@@ -7,11 +7,11 @@ import MyState from './context/MyState'
 import Toaster from 'react-hot-toast'
 import AdminDashboard from './pages/dashboard/adminDashboard'
 import UserDashboard from './pages/dashboard/UserDashboard'
-import ProductInfo from './pages/productdetail/ProductDetail'
-import UpdateProductPage from './pages/updateproduct/UpdateProductPage'
 import ProtectedRouteforAdmin from './components/protectedroute/ProtectedRouteforAdmin'
 import ProtectedRouteforUser from './components/protectedroute/ProtectedRouteforUser'
+import EditProductPage from './pages/editProduct/EditProduct'
 import AddProductPage from './pages/addproduct/AddProductPage'
+import ProductInfo from './pages/productinfo/ProductInfo'
 const App = () => {
   return (
     <MyState>
@@ -20,7 +20,7 @@ const App = () => {
         <Route path='/' element= {<HomePage />} />
         <Route path='/login' element= {<Login />}/> 
         <Route path='/signup' element= {<Signup />} />
-        <Route path='/pages/productdetail' element= {<ProductInfo />} />
+        <Route path='/pages/productinfo/:id' element={<ProductInfo />} />
 
         <Route path='/pages/dashboard/adminDashboard' element= {
           <ProtectedRouteforAdmin>
@@ -34,17 +34,17 @@ const App = () => {
           </ProtectedRouteforUser>   
           }/>
 
-        <Route path='/pages/updateproduct' element= {
-          <ProtectedRouteforAdmin>   
-             <UpdateProductPage />
-          </ProtectedRouteforAdmin>   
-          }/>
-
         <Route path='/pages/addproduct' element= {
           <ProtectedRouteforAdmin>
              <AddProductPage />
-          </ProtectedRouteforAdmin>
-          }/>   
+          </ProtectedRouteforAdmin>   
+          }/>  
+
+        <Route path='/pages/editproduct/:id' element= {
+          <ProtectedRouteforAdmin>   
+             <EditProductPage />
+          </ProtectedRouteforAdmin>   
+          }/>
 
       </Routes>
       <Toaster />

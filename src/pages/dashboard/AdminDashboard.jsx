@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import AdminProducts from "../../components/adminProducts/AdminProducts";
+import { useContext } from "react";
+import MyContext from "../../context/myContext";
 
 const AdminDashboard = () => {
 
     const getuserDetail = JSON.parse(localStorage.getItem('users'));
     const {name, email} = getuserDetail;
-    const navigate = useNavigate();
+    const context = useContext(MyContext);
+    const {getAllProduct} = context;
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
@@ -64,7 +66,7 @@ const AdminDashboard = () => {
                                 <path d="m15 11-1 9" />
                             </svg>
                         </div>
-                        <h2 className="text-4xl font-bold text-gray-700">10</h2>
+                        <h2 className="text-4xl font-bold text-gray-700">{getAllProduct.length}</h2>
                         <p className="mt-2 text-lg font-semibold text-indigo-600">Total Products</p>
                     </div>
 
