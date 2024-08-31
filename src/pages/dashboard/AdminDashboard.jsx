@@ -1,13 +1,15 @@
 import AdminProducts from "../../components/adminProducts/AdminProducts";
 import { useContext } from "react";
 import MyContext from "../../context/myContext";
+import TotalOrders from "../../components/totalOrders/TotalOrders";
+import TotalUsers from "../../components/totalUsers/TotalUsers";
 
 const AdminDashboard = () => {
 
     const getuserDetail = JSON.parse(localStorage.getItem('users'));
     const {name, email} = getuserDetail;
     const context = useContext(MyContext);
-    const {getAllProduct} = context;
+    const {getAllProduct, userOrder, allUsers  } = context;
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
@@ -93,7 +95,7 @@ const AdminDashboard = () => {
                                 <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
                             </svg>
                         </div>
-                        <h2 className="text-4xl font-bold text-gray-700">10</h2>
+                        <h2 className="text-4xl font-bold text-gray-700">{userOrder.length}</h2>
                         <p className="mt-2 text-lg font-semibold text-indigo-600">Total Orders</p>
                     </div>
 
@@ -118,12 +120,16 @@ const AdminDashboard = () => {
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                             </svg>
                         </div>
-                        <h2 className="text-4xl font-bold text-gray-700">10</h2>
+                        <h2 className="text-4xl font-bold text-gray-700">{allUsers.length}</h2>
                         <p className="mt-2 text-lg font-semibold text-indigo-600">Total Users</p>
                     </div>
                 </div>
 
                 <AdminProducts />
+                <TotalOrders />
+                <TotalUsers />
+                
+                
             </div>
         </div>
     );

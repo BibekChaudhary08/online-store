@@ -12,6 +12,8 @@ import ProtectedRouteforUser from './components/protectedroute/ProtectedRoutefor
 import EditProductPage from './pages/editProduct/EditProduct'
 import AddProductPage from './pages/addproduct/AddProductPage'
 import ProductInfo from './pages/productinfo/ProductInfo'
+import CartItemPage from './pages/cartItem/CartItemPage'
+import BuyNow from './pages/buynow/BuyNow'
 const App = () => {
   return (
     <MyState>
@@ -33,6 +35,18 @@ const App = () => {
              <UserDashboard />
           </ProtectedRouteforUser>   
           }/>
+
+        <Route path='/pages/cartitem' element= {
+          <ProtectedRouteforUser>
+             <CartItemPage />
+          </ProtectedRouteforUser>   
+          }/>  
+
+          <Route path='/pages/buynow' element= {
+          <ProtectedRouteforUser>
+             <BuyNow />
+          </ProtectedRouteforUser>   
+          }/>   
 
         <Route path='/pages/addproduct' element= {
           <ProtectedRouteforAdmin>

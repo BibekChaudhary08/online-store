@@ -1,11 +1,33 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import MyContext from "../../context/myContext";
+import {useDispatch, useSelector} from 'react-redux'
+import { addToCart, deleteToCart } from "../../redux/cartSlice";
+import Loader from "../loader/Loader";
 
 const AllProducts = () => {
     const navigate = useNavigate();
     const context = useContext(MyContext);
-    const { getAllProduct } = context;
+    const { loading, getAllProduct } = context;
+    
+    const cartItems = useSelector((state)=> state.cart);
+    const dispatch = useDispatch();
+
+    const addCart = (item) => {
+        dispatch(addToCart(item));
+        alert('Product added successfully');
+    }
+
+    const deleteCart = (item) => {
+        dispatch(deleteToCart(item));
+        alert('Product deleted Successfully');
+    }
+
+    useEffect(() => {
+       localStorage.setItem('cart', JSON.stringify(cartItems));
+    }, [cartItems])
+    
+
 
     return (
         <div className="py-12 px-6 md:px-12 bg-gradient-to-r from-blue-100 to-purple-100">
@@ -18,6 +40,7 @@ const AllProducts = () => {
 
             {/* Products Grid */}
             <section className="text-gray-800 body-font">
+                {loading && <Loader />}
                 <div className="container mx-auto">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {getAllProduct.map((item) => {
@@ -43,9 +66,17 @@ const AllProducts = () => {
                                         <p className="text-xl font-semibold text-orange-600 mb-4">
                                             Rs.{price}
                                         </p>
-                                        <button className="w-full bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white py-3 rounded-full font-bold transform transition-transform hover:scale-105">
-                                            Add To Cart
-                                        </button>
+                                        {cartItems.some((p) => p.id === item.id)?
+                                        <button className="w-full bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white py-3 rounded-full font-bold transform transition-transform hover:scale-105"
+                                        onClick={() => deleteCart(item)}>
+                                           Delete To Cart
+                                       </button>
+                                       :
+                                       <button className="w-full bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white py-3 rounded-full font-bold transform transition-transform hover:scale-105"
+                                        onClick={() => addCart(item)}>
+                                           Add To Cart
+                                       </button>
+                                        }
                                     </div>
                                 </div>
                             );

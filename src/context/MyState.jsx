@@ -7,6 +7,8 @@ const MyState = ({children}) => {
 
     const [loading, setLoading] = useState(false);
 
+    //get All Product
+
     const [getAllProduct, setGetAllProduct] = useState([]);
 
     const getAllProductFunction = async () => {
@@ -31,8 +33,65 @@ const MyState = ({children}) => {
         }
     }
 
+    //  My Order state
+const [userOrder, setUserOrder] = useState([]);
+
+const userOrderFunction = async () => {
+    setLoading(true);
+    try {
+        const q = query(
+            collection(fireDB, "orders"),
+            orderBy('time')
+        );
+        const data = onSnapshot(q, (QuerySnapshot) => {
+            let orderArray = [];
+            QuerySnapshot.forEach((doc) => {
+                orderArray.push({ ...doc.data(), id: doc.id });
+            });
+            setUserOrder(orderArray);
+            setLoading(false);
+        });
+        return () => data;
+
+    } catch (error) {
+        toast.error('Error')
+        setLoading(false);
+    }
+}
+
+// get all users
+
+const [ allUsers, getAllUsers ] = useState([]);
+
+const getAllUsersFunction = async () => {
+    setLoading(true);
+    try {
+        const q = query(
+            collection(fireDB, 'user'),
+            orderBy('time')
+        );
+
+        const data = onSnapshot(q, (QuerySnapshot) => {
+            let usersArray = [];
+            QuerySnapshot.forEach((doc) => {
+                usersArray.push({ ...doc.data(), id: doc.id })
+            })
+            getAllUsers(usersArray);
+            setLoading(false);
+        })
+ 
+        return () => data;
+
+    } catch (error) {
+        toast.error('Error'); 
+        setLoading(false);
+    }
+}
+
     useEffect(() => {
         getAllProductFunction();
+        userOrderFunction();
+        getAllUsersFunction();
     }, []);
 
 return(
@@ -40,7 +99,11 @@ return(
         loading,
         setLoading,
         getAllProduct,
-        getAllProductFunction
+        getAllProductFunction,
+        userOrder,
+        setUserOrder,
+        allUsers,
+        getAllUsers
     }}>
         {children}
     </MyContext.Provider>

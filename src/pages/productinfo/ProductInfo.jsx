@@ -5,14 +5,34 @@ import { useParams } from "react-router";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import Loader from "../../components/loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, deleteToCart } from "../../redux/cartSlice";
 
 const ProductInfo = () => {
     const context = useContext(myContext);
-    const { loading, setLoading } = context;
+    const { loading, setLoading, getAllProduct } = context;
 
     const [product, setProduct] = useState(null);
 
     const { id } = useParams();
+
+    const cartItems = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+    const addCart = (product) => {
+        dispatch(addToCart(product));
+        alert('Product Added Successfully');
+    }
+
+    const deleteCart = (product) => {
+        dispatch(deleteToCart(product));
+        alert('Product Remove Successfully');
+    }
+
+    useEffect(() => {
+      localStorage.setItem('cart', JSON.stringify(cartItems))
+    }, [cartItems])
+    
 
     // getProductData
     const getProductData = async () => {
@@ -29,7 +49,7 @@ const ProductInfo = () => {
 
     useEffect(() => {
         getProductData();
-    }, [id]);
+    }, []);
 
     return (
         <Layout>
@@ -87,9 +107,17 @@ const ProductInfo = () => {
                                         <p>{product?.description}</p>
                                     </div>
                                     <div className="flex flex-wrap items-center mb-6">
-                                        <button className="w-full px-4 py-3 text-center text-blue-600 bg-blue-100 border border-blue-600 hover:bg-blue-600 hover:text-gray-100 rounded-xl transition duration-300">
-                                            Add to cart
-                                        </button>
+                                        {cartItems.some((p) => p.id === product?.id)?
+                                        <button className="w-full px-4 py-3 text-center text-blue-600 bg-blue-100 border border-blue-600 hover:bg-blue-600 hover:text-gray-100 rounded-xl transition duration-300"
+                                        onClick={() => deleteCart(product)}>
+                                           Delete to cart
+                                       </button>
+                                        :
+                                        <button className="w-full px-4 py-3 text-center text-blue-600 bg-blue-100 border border-blue-600 hover:bg-blue-600 hover:text-gray-100 rounded-xl transition duration-300"
+                                        onClick={() => addCart(product)}>
+                                           Add to cart
+                                       </button>
+                                    }
                                     </div>
                                 </div>
                             </div>
