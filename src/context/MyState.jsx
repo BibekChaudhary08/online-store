@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import MyContext from './myContext';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { fireDB } from '../firebase/FirebaseConfig';
+import MyContext from './MyContext';
 
 const MyState = ({children}) => {
 
