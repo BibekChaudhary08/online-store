@@ -5,8 +5,6 @@ import HomePage from './pages/homepage/HomePage'
 import Signup from './pages/signup/Signup'
 import MyState from './context/MyState'
 import Toaster from 'react-hot-toast'
-import AdminDashboard from './pages/dashboard/adminDashboard'
-import UserDashboard from './pages/dashboard/UserDashboard'
 import ProtectedRouteforAdmin from './components/protectedroute/ProtectedRouteforAdmin'
 import ProtectedRouteforUser from './components/protectedroute/ProtectedRouteforUser'
 import EditProductPage from './pages/editProduct/EditProduct'
@@ -14,6 +12,8 @@ import AddProductPage from './pages/addproduct/AddProductPage'
 import ProductInfo from './pages/productinfo/ProductInfo'
 import CartItemPage from './pages/cartItem/CartItemPage'
 import BuyNow from './pages/buynow/BuyNow'
+import AdminDashboard from './pages/dashboard/admindashboard/AdminDashboard'
+import UserDashboard from './pages/dashboard/userdashboard/UserDashboard'
 const App = () => {
   return (
     <MyState>

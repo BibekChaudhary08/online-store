@@ -1,8 +1,8 @@
-import AdminProducts from "../../components/adminProducts/AdminProducts";
 import { useContext } from "react";
-import MyContext from "../../context/myContext";
-import TotalOrders from "../../components/totalOrders/TotalOrders";
-import TotalUsers from "../../components/totalUsers/TotalUsers";
+import AdminProducts from "../../../components/adminProducts/AdminProducts";
+import MyContext from "../../../context/myContext";
+import TotalOrders from "../../../components/totalOrders/TotalOrders";
+import TotalUsers from "../../../components/totalUsers/TotalUsers";
 
 const AdminDashboard = () => {
 
@@ -124,12 +124,9 @@ const AdminDashboard = () => {
                         <p className="mt-2 text-lg font-semibold text-indigo-600">Total Users</p>
                     </div>
                 </div>
-
                 <AdminProducts />
                 <TotalOrders />
                 <TotalUsers />
-                
-                
             </div>
         </div>
     );
