@@ -43,4 +43,4 @@ Deployment
 This project is deployed on Vercel. You can visit the live version of the website here:
 
 Live Website
-https://onlinestores-puce.vercel.app/
+https://vercel.com/bibekch08s-projects/bibek-online-store
