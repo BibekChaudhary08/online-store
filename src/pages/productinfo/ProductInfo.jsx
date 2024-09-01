@@ -7,8 +7,14 @@ import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteToCart } from "../../redux/cartSlice";
 import MyContext from "../../context/MyContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductInfo = () => {
+
+    const userDetail = JSON.parse(localStorage.getItem('users'));
+
+    const navigate = useNavigate();
+
     const context = useContext(MyContext);
     const { loading, setLoading, getAllProduct } = context;
 
@@ -20,8 +26,13 @@ const ProductInfo = () => {
     const dispatch = useDispatch();
 
     const addCart = (product) => {
-        dispatch(addToCart(product));
-        alert('Product Added Successfully');
+        if(userDetail){
+          dispatch(addToCart(product));
+          alert('Product Added Successfully');
+        }
+        else{
+          navigate('/login');
+        }
     }
 
     const deleteCart = (product) => {

@@ -9,13 +9,20 @@ const AllProducts = () => {
     const navigate = useNavigate();
     const context = useContext(MyContext);
     const { loading, getAllProduct } = context;
+
+    const userDetail = JSON.parse(localStorage.getItem('users'));
     
     const cartItems = useSelector((state)=> state.cart);
     const dispatch = useDispatch();
 
     const addCart = (item) => {
-        dispatch(addToCart(item));
-        alert('Product added successfully');
+        if(userDetail){
+            dispatch(addToCart(item));
+            alert('Product added successfully');
+        }
+        else{
+            navigate('/login');
+        }
     }
 
     const deleteCart = (item) => {
