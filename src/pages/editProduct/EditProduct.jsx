@@ -4,8 +4,8 @@ import toast from "react-hot-toast";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
-import MyContext from "../../context/myContext";
 import Loader from "../../components/loader/Loader";
+import MyContext from "../../context/MyContext";
 
 const EditProductPage = () => {
   const context = useContext(MyContext);

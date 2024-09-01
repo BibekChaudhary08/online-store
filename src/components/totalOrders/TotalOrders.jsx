@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
-import MyContext from "../../context/myContext";
+import MyContext from "../../context/MyContext";
 
 const TotalOrders = () => {
     const context = useContext(MyContext);

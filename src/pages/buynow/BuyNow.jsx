@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyContext from '../../context/myContext';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import { fireDB } from '../../firebase/FirebaseConfig';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteToCart } from '../../redux/cartSlice';
 import { toast } from 'react-hot-toast';
+import MyContext from '../../context/MyContext';
 
 const BuyNow = () => {
   const [inputdetail, setInputDetail] = useState({

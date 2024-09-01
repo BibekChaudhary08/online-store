@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import myContext from "../../context/myContext";
 import Loader from "../loader/Loader";
 import { deleteDoc, doc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import toast from "react-hot-toast";
+import MyContext from "../../context/MyContext";
 
 const AdminProducts = () => {
-    const context = useContext(myContext);
+    const context = useContext(MyContext)
     const { loading, setLoading, getAllProduct, getAllProductFunction } = context;
 
     const navigate = useNavigate();

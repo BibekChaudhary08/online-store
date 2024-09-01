@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
-import MyContext from "../../context/myContext";
 import {useDispatch, useSelector} from 'react-redux'
 import { addToCart, deleteToCart } from "../../redux/cartSlice";
 import Loader from "../loader/Loader";
+import MyContext from "../../context/MyContext";
 
 const AllProducts = () => {
     const navigate = useNavigate();

@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import MyContext from "../../context/myContext";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
+import MyContext from "../../context/MyContext";
 
 const Signup = () => {
     const context = useContext(MyContext);

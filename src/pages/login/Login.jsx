@@ -5,7 +5,7 @@ import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import Loader from "../../components/loader/Loader";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import toast from 'react-hot-toast'
-import MyContext from '../../context/myContext';
+import MyContext from '../../context/MyContext';
 
 const Login = () => {
 

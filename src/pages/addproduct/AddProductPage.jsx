@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import MyContext from '../../context/myContext';
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import Loader from '../../components/loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import MyContext from '../../context/MyContext';
 
 const AddProductPage = () => {
   const context = useContext(MyContext);
