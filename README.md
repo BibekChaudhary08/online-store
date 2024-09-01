@@ -30,7 +30,7 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://your-repository-url.git
+   git clone https://github.com/BibekChaudhary08/online-store
 2. Navigate to the project directory:
 cd online-store
 
@@ -43,4 +43,4 @@ Deployment
 This project is deployed on Vercel. You can visit the live version of the website here:
 
 Live Website
-
+https://onlinestores-puce.vercel.app/
